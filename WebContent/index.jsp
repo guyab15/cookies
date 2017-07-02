@@ -14,26 +14,22 @@
 		<br>
 		<input type="submit" value="Submit">
 	</form>
-	<%
-	String lastName = "";
-	String firstName = "";
-	Cookie[] requestCookies = request.getCookies();
-	for (Cookie cookie : requestCookies) {
-		if (cookie.getName().equals("firstName")) {
-			firstName = cookie.getValue();
-		}
-		if (cookie.getName().equals("lastName")) {
-			lastName = cookie.getValue();
-		}
-	}
-	%>
 	<table>
-		<tr>
-			<td>my first name: <%= firstName %></td>
-		</tr>
-		<tr>
-			<td>my last name: <%= lastName %></td>
-		</tr>
+	
+	<%Cookie[] requestCookies = request.getCookies();
+	if (requestCookies == null){
+		requestCookies = new Cookie[0];	
+	}	    
+	for (Cookie cookie : requestCookies) {
+		String firstName = cookie.getName();
+		String lastName = cookie.getValue();
+	%>
+			<tr>
+				<td>my first name: <%= firstName %></td>
+				<td>my last name: <%= lastName %></td>
+			</tr>
+			
+			<% }%> 
 	</table>
 </body>
 </html>

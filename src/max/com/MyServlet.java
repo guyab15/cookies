@@ -45,11 +45,9 @@ public class MyServlet extends HttpServlet {
 		String firstName = request.getParameter("first_name");
 		String lastName = request.getParameter("last_name");
 		
-		Cookie cookieFirstName = new Cookie("firstName", firstName);
-		Cookie cookieLastName = new Cookie("lastName", lastName);
+		Cookie cookie = new Cookie(firstName, lastName);
 		
-		response.addCookie(cookieFirstName);
-		response.addCookie(cookieLastName);
+		response.addCookie(cookie);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.include(request, response);
